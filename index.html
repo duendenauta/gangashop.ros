@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ganga Shop</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Ganga Shop ✿</h1>
+  <p class="subtitulo">
+    Elegí lo que te guste y escribinos por WhatsApp ♡  
+    Coordinamos entrega en Rosario
+  </p>
+</header>
+
+<nav>
+  <button class="tab active" onclick="filtrar('todos')">Todos</button>
+  <button class="tab" onclick="filtrar('ropa')">Ropa</button>
+  <button class="tab" onclick="filtrar('accesorios')">Accesorios</button>
+</nav>
+
+<section class="productos">
+
+  <!-- PRODUCTO -->
+  <div class="card" data-categoria="ropa">
+    <img src="https://via.placeholder.com/300" alt="Jean clásico">
+    <h3>Jean clásico</h3>
+    <p class="precio">$12.000</p>
+    <a href="https://wa.me/5493412275506?text=Hola! Me interesa el Jean clásico 👖 ¿Sigue disponible?" target="_blank">
+      Me interesa
+    </a>
+  </div>
+
+  <!-- DUPLICÁ ESTO PARA NUEVOS PRODUCTOS -->
+
+</section>
+
+<script>
+function filtrar(categoria) {
+  const cards = document.querySelectorAll(".card");
+  const tabs = document.querySelectorAll(".tab");
+
+  tabs.forEach(tab => tab.classList.remove("active"));
+  event.target.classList.add("active");
+
+  cards.forEach(card => {
+    if (categoria === "todos" || card.dataset.categoria === categoria) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

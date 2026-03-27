@@ -1,0 +1,91 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fffafc;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #777;
+}
+
+nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tab {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 8px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.tab.active {
+  background-color: #000;
+  color: white;
+}
+
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  width: 220px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+}
+
+.precio {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #25D366;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.card a:hover {
+  background-color: #1ebe5d;
+}
