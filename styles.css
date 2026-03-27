@@ -1,91 +1,235 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #fffafc;
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --crema:     #f5eedf;
+  --mostaza:   #c9922a;
+  --terracota: #b85c38;
+  --marron:    #4a2e1a;
+  --oliva:     #7a7a4a;
+  --hueso:     #ede0c8;
+  --sombra:    rgba(74, 46, 26, 0.12);
 }
 
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--crema);
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(201,146,42,0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(184,92,56,0.07) 0%, transparent 40%);
+  margin: 0;
+  padding: 0;
+  color: var(--marron);
+  min-height: 100vh;
+}
+
+/* ── Grain overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ── Header ── */
 header {
   text-align: center;
-  padding: 20px;
+  padding: 52px 20px 36px;
+  position: relative;
+  z-index: 1;
+}
+
+header::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--mostaza), var(--terracota));
+  margin: 18px auto 0;
+  border-radius: 2px;
 }
 
 h1 {
-  margin-bottom: 5px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--marron);
+  margin: 0 0 10px;
+  line-height: 1.1;
 }
 
 .subtitulo {
-  font-size: 14px;
-  color: #777;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--terracota);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  margin: 0;
 }
 
+/* ── Nav / Filtros ── */
 nav {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 1;
 }
 
 .tab {
-  background: none;
-  border: 1px solid #ccc;
-  padding: 8px 15px;
-  margin: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1.5px solid rgba(74,46,26,0.25);
+  color: var(--marron);
+  padding: 7px 20px;
+  margin: 4px;
   cursor: pointer;
-  border-radius: 20px;
-  transition: 0.3s;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.tab:hover {
+  border-color: var(--mostaza);
+  color: var(--mostaza);
 }
 
 .tab.active {
-  background-color: #000;
-  color: white;
+  background-color: var(--marron);
+  border-color: var(--marron);
+  color: var(--crema);
 }
 
+/* ── Grid de productos ── */
 .productos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 10px;
+  gap: 24px;
+  padding: 10px 24px 60px;
+  position: relative;
+  z-index: 1;
 }
 
+/* ── Card ── */
 .card {
-  background: white;
-  border-radius: 15px;
-  width: 220px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  transition: 0.3s;
+  background: var(--hueso);
+  border-radius: 4px;
+  width: 240px;
+  padding: 0;
+  text-align: left;
+  box-shadow: 0 2px 8px var(--sombra), 0 8px 28px var(--sombra);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--mostaza), var(--terracota));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 4px 16px var(--sombra), 0 16px 40px var(--sombra);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card img {
   width: 100%;
-  border-radius: 10px;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  filter: sepia(15%) saturate(0.9);
+  transition: filter 0.4s ease;
+}
+
+.card:hover img {
+  filter: sepia(5%) saturate(1);
+}
+
+/* ── Info dentro de la card ── */
+.card-body {
+  padding: 14px 16px 18px;
 }
 
 .card h3 {
-  margin: 10px 0 5px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0 0 4px;
+  color: var(--marron);
 }
 
 .precio {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--terracota);
+  margin: 0 0 14px;
+  letter-spacing: 0.02em;
 }
 
 .card a {
   display: inline-block;
   text-decoration: none;
-  background-color: #25D366;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 20px;
-  transition: 0.3s;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--marron);
+  padding: 7px 14px;
+  border: 1.5px solid var(--marron);
+  border-radius: 2px;
+  transition: all 0.25s ease;
 }
 
 .card a:hover {
-  background-color: #1ebe5d;
+  background-color: var(--marron);
+  color: var(--crema);
+}
+
+/* ── Decoraciones ── */
+.deco-circle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.deco-circle.uno {
+  width: 340px; height: 340px;
+  top: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(201,146,42,0.10) 0%, transparent 70%);
+}
+.deco-circle.dos {
+  width: 280px; height: 280px;
+  bottom: -80px; left: -80px;
+  background: radial-gradient(circle, rgba(184,92,56,0.09) 0%, transparent 70%);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .productos { gap: 16px; padding: 10px 12px 50px; }
+  .card { width: calc(50% - 8px); }
 }
